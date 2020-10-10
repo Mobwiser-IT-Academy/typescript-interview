@@ -1,0 +1,37 @@
+{
+  "name": "typescript-interview",
+  "version": "1.0.0",
+  "description": "Typescript OOP and Functional programming technical interview",
+  "main": "index.js",
+  "scripts": {
+    "start": "node node_modules/ts-node/dist/bin.js ./src/index.ts",
+    "test": "jest",
+    "test:watch": "jest --watch"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Mobwiser-IT-Academy/typescript-interview.git"
+  },
+  "keywords": [
+    "mobwiser",
+    "it",
+    "academy",
+    "typescript",
+    "technical",
+    "interview"
+  ],
+  "author": "Mobwiser",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Mobwiser-IT-Academy/typescript-interview/issues"
+  },
+  "homepage": "https://github.com/Mobwiser-IT-Academy/typescript-interview#readme",
+  "devDependencies": {
+    "@types/jest": "^26.0.14",
+    "@types/node": "^14.11.6",
+    "jest": "^26.5.2",
+    "ts-jest": "^26.4.1",
+    "ts-node": "^9.0.0",
+    "typescript": "^4.0.3"
+  }
+}
