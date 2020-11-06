@@ -15,18 +15,3 @@
  * console.log(analyseQuotes(quotes));
  * > {'Sports': 1, 'Politcs': 1, 'Motivational': 1}
  */
-export interface Quote {
-  title: string;
-  category: string;
-}
-
-export function analyseQuotes(quotes: Quote[]): Record<string, number> {
-  const counter: Record<string, number> = {};
-  for (const quote of quotes) {
-    if (!counter[quote.category]) {
-      counter[quote.category] = 0;
-    }
-    counter[quote.category] += 1;
-  }
-  return counter;
-}
