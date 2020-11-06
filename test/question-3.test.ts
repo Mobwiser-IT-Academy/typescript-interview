@@ -1,10 +1,4 @@
-import {
-  Supermarket,
-  Product,
-  Bag,
-  numberOfTransactionsWithDiscount,
-  totalDiscountInSupermarket,
-} from '../src/question-3';
+import {Supermarket, Product, Bag} from '../src/question-3';
 
 describe('validate question 3', () => {
   let supermarket: Supermarket;
