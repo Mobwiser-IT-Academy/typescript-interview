@@ -15,3 +15,6 @@
  * console.log(analyseQuotes(quotes));
  * > {'Sports': 1, 'Politcs': 1, 'Motivational': 1}
  */
+interface Quote{
+
+}
