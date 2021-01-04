@@ -33,12 +33,13 @@ export function analyseQuotes(quotes:Quote[]): Record<string, number>
     let quoteCategory= quotes;
 
 
-//for(let i = quotes.length-1; i>=0; i--){
 
 for(let i=0; i<quotes.length; i++){
-
+    objectResult[quotes[i].category] =0;
     objectResult[quotes[i].category] =+ 1;
 }
+
+
 
 return objectResult
 

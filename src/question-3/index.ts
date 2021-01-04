@@ -38,3 +38,97 @@
  * - "totalDiscountInSupermarket" - this should be a getter that returns the total discount applied in the supermarket
  *
  */
+
+ export class Product{
+
+    name:string;
+    price:number;
+
+    constructor (name,price){
+        name = this.name
+        price = this.price
+    }
+
+
+ }
+
+ export class Bag {
+
+  products:Product[]=[];
+
+  add(product:Product){
+
+    this.products.push(product)
+
+  }
+
+  totalSpent(){
+
+ let total:number;
+
+    for (let i=0; i< this.products.length; i++){
+        total+= this.products[i].price
+    }
+
+    return total
+  }
+
+ }
+
+export class Transaction{
+
+  bag:Bag;
+  
+
+  constructor (bag:Bag){
+    bag = this.bag
+   let date = new Date();
+   let time = date.getTime();
+  }
+
+
+}
+
+
+export class Supermarket{
+
+  transactions=[];
+  limitWithoutDiscount:number;
+  discountPercentage:number;
+
+  constructor(limitWithoutDiscount:number,discountPercentage:number){
+
+  limitWithoutDiscount = this.limitWithoutDiscount;
+  discountPercentage = this.discountPercentage;
+
+  }
+  
+  registerTransaction(bag:Bag){
+
+this.transactions.push(bag)
+return this.transactions
+  }
+
+  hasDiscount(transaction:Transaction){
+
+
+   
+  }
+
+ 
+ totalDiscount(transaction:Transaction){
+
+  
+
+
+  }
+
+  numberOfTransactionsWithDiscount(){
+return 0
+  }
+
+  totalDiscountInSupermarket(b){
+    return b
+  }
+
+}
