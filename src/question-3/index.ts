@@ -124,11 +124,11 @@ return this.transactions
   }
 
   numberOfTransactionsWithDiscount(){
-return 0
+
   }
 
-  totalDiscountInSupermarket(b){
-    return b
+  totalDiscountInSupermarket(){
+   
   }
 
 }
