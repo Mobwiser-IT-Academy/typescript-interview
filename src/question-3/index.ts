@@ -34,7 +34,7 @@
  * - "registerTransaction" - this method should receive a bag and register a new transaction with that bag
  * - "hasDiscount" - this method should receive a transaction and check whether the transactions had a discount or not
  * - "totalDiscount" - this method should receive a transaction and check the total discount for that transaction
- * - "numberOfTransactionsWithDiscount" - this should be a getter that returns the number of transactions without discount
+ * - "numberOfTransactionsWithDiscount" - this should be a getter that returns the number of transactions with discount
  * - "totalDiscountInSupermarket" - this should be a getter that returns the total discount applied in the supermarket
  *
  */
@@ -62,7 +62,7 @@
 
   }
 
-  totalSpent(){
+get totalSpent(){
 
  let total:number;
 
@@ -75,16 +75,19 @@
 
  }
 
-export class Transaction{
+export class Transaction {
 
-  bag:Bag;
+ bag:Bag;
   
 
   constructor (bag:Bag){
-    bag = this.bag
+
+    bag = this.bag;
    let date = new Date();
    let time = date.getTime();
+   
   }
+  
 
 
 }
@@ -92,9 +95,13 @@ export class Transaction{
 
 export class Supermarket{
 
-  transactions=[];
+  
+  transactions:Transaction[]= [];
   limitWithoutDiscount:number;
   discountPercentage:number;
+ 
+
+
 
   constructor(limitWithoutDiscount:number,discountPercentage:number){
 
@@ -103,32 +110,57 @@ export class Supermarket{
 
   }
   
-  registerTransaction(bag:Bag){
+  registerTransaction(transaction){
 
-this.transactions.push(bag)
+this.transactions.push(transaction)
 return this.transactions
   }
 
-  hasDiscount(transaction:Transaction){
+  hasDiscount(transaction:Transaction):boolean{
 
+if (transaction.bag.totalSpent > this.limitWithoutDiscount){
+  return true
+} 
 
-   
+ 
   }
+
 
  
  totalDiscount(transaction:Transaction){
 
+  let priceWithDiscount:number;
+  let discountValue:number;
   
 
 
+  if(this.hasDiscount){
+
+    priceWithDiscount = transaction.bag.totalSpent-(transaction.bag.totalSpent*this.discountPercentage);
+
+
+    discountValue=transaction.bag.totalSpent-priceWithDiscount
+
   }
 
-  numberOfTransactionsWithDiscount(){
-
+  
   }
 
-  totalDiscountInSupermarket(){
+
+ get numberOfTransactionsWithDiscount(){
    
-  }
+
+  return
+
+ }
+
+  get totalDiscountInSupermarket(){
+   
+return
+  
+  
+   }
+
 
 }
+
