@@ -39,13 +39,15 @@
  *
  */
 
-export class Product{
+// import { link } from "fs";
 
-  name:string;
-  price:number;
+export class Product {
 
-  constructor (name,price){
-      this.name = name
+  name: string;
+  price: number;
+
+  constructor(name, price) {
+    this.name = name,
       this.price = price
   }
 
@@ -54,118 +56,132 @@ export class Product{
 
 export class Bag {
 
-products:Product[]=[];
+  products: Product[] = [];
 
-add(product:Product){
 
-  this.products.push(product)
+  get totalSpent() {
 
-}
+    let total: number = 0;
+    for (let i: number = 0; i < this.products.length; i++) {
 
-get totalSpent(){
+      total += this.products[i].price
 
-let total:number;
-
-  for (let i=0; i< this.products.length; i++){
-      total+= this.products[i].price
+    }
+    return total
   }
 
-  return total
-}
+  add(product: Product) {
+
+    this.products.push(product)
+
+  }
+
+
 
 }
 
 export class Transaction {
 
-bag:Bag;
+  bag: Bag;
+  time: Date;
 
 
-constructor (bag:Bag){
+  constructor(bag: Bag) {
 
-  this.bag = bag;
- let date = new Date();
- let time = date.getTime();
- 
-}
+    this.bag = bag;
+    this.time = new Date();
 
+  }
 
-
-}
-
-
-export class Supermarket{
-
-
-transactions:Transaction[]= [];
-limitWithoutDiscount:number;
-discountPercentage:number;
-priceWithDiscount:number;
-discountValue:number;
-
-
-
-
-constructor(limitWithoutDiscount:number,discountPercentage:number){
-
-limitWithoutDiscount = this.limitWithoutDiscount;
-discountPercentage = this.discountPercentage;
-
-}
-
-registerTransaction(transaction){
-
-this.transactions.push(transaction)
-return this.transactions
-}
-
-hasDiscount(transaction:Transaction):boolean{
-
-if (this.limitWithoutDiscount>transaction.bag.totalSpent){
-return true
-} 
 
 
 }
 
 
-
-totalDiscount(transaction:Transaction){
-
-if(this.hasDiscount){
-
-  this.priceWithDiscount = transaction.bag.totalSpent-(transaction.bag.totalSpent*this.discountPercentage);
+export class Supermarket {
 
 
-  this.discountValue=transaction.bag.totalSpent-this.priceWithDiscount
+  transactions: Transaction[] = [];
+  limitWithoutDiscount: number;
+  discountPercentage: number;
 
-}
+  constructor(limitWithoutDiscount: number, discountPercentage: number) {
 
+    this.limitWithoutDiscount = limitWithoutDiscount;
+    this.discountPercentage = discountPercentage;
 
-}
+  }
 
+  registerTransaction(bag: Bag) {
 
-get numberOfTransactionsWithDiscount(){
- 
-
-  let arr=[]
-
-   for(let i = 0; i<this.transactions.length; i++){
-
-    if(this.hasDiscount(this.transactions[i]))
-   arr.push(this.transactions[i])
-
- }
-
-return arr.length
-
-}
-
-get totalDiscountInSupermarket(){
- 
-return
+    const transaction = new Transaction(bag)
+    this.transactions.push(transaction)
 
 
- }
+
+  }
+
+  hasDiscount(transaction: Transaction) {
+
+    return transaction.bag.totalSpent >= this.limitWithoutDiscount;
+
+
+
+
+
+  }
+
+
+
+  totalDiscount(transaction: Transaction) {
+
+    if (this.hasDiscount(transaction)) {
+
+      return transaction.bag.totalSpent * this.discountPercentage
+    }
+    else {
+
+      return 0
+    }
+
+  }
+
+
+  get numberOfTransactionsWithDiscount() {
+
+    let total: number = 0;
+
+    for (let i: number = 0; i < this.transactions.length; i++) {
+
+      if (this.hasDiscount(this.transactions[i])) {
+        total++
+
+      }
+
+    }
+
+    return total
+
+
+  }
+
+
+
+
+
+  get totalDiscountInSupermarket() {
+
+    let total: number = 0;
+
+    for (let i: number = 0; i < this.transactions.length; i++) {
+
+      total += this.totalDiscount(this.transactions[i])
+
+    }
+
+    return total
+
+  }
 
 
 }
