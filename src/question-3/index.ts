@@ -42,147 +42,86 @@
 // import { link } from "fs";
 
 export class Product {
-
   name: string;
   price: number;
 
   constructor(name, price) {
-    this.name = name,
-      this.price = price
+    (this.name = name), (this.price = price);
   }
-
-
 }
 
 export class Bag {
-
   products: Product[] = [];
 
-
   get totalSpent() {
-
     let total: number = 0;
     for (let i: number = 0; i < this.products.length; i++) {
-
-      total += this.products[i].price
-
+      total += this.products[i].price;
     }
-    return total
+    return total;
   }
 
   add(product: Product) {
-
-    this.products.push(product)
-
+    this.products.push(product);
   }
-
-
-
 }
 
 export class Transaction {
-
   bag: Bag;
   time: Date;
 
-
   constructor(bag: Bag) {
-
     this.bag = bag;
     this.time = new Date();
-
   }
-
-
-
 }
 
-
 export class Supermarket {
-
-
   transactions: Transaction[] = [];
   limitWithoutDiscount: number;
   discountPercentage: number;
 
   constructor(limitWithoutDiscount: number, discountPercentage: number) {
-
     this.limitWithoutDiscount = limitWithoutDiscount;
     this.discountPercentage = discountPercentage;
-
   }
 
   registerTransaction(bag: Bag) {
-
-    const transaction = new Transaction(bag)
-    this.transactions.push(transaction)
-
-
-
+    const transaction = new Transaction(bag);
+    this.transactions.push(transaction);
   }
 
   hasDiscount(transaction: Transaction) {
-
     return transaction.bag.totalSpent >= this.limitWithoutDiscount;
-
-
-
-
-
   }
-
-
 
   totalDiscount(transaction: Transaction) {
-
     if (this.hasDiscount(transaction)) {
-
-      return transaction.bag.totalSpent * this.discountPercentage
+      return transaction.bag.totalSpent * this.discountPercentage;
+    } else {
+      return 0;
     }
-    else {
-
-      return 0
-    }
-
   }
-
 
   get numberOfTransactionsWithDiscount() {
-
     let total: number = 0;
 
     for (let i: number = 0; i < this.transactions.length; i++) {
-
       if (this.hasDiscount(this.transactions[i])) {
-        total++
-
+        total++;
       }
-
     }
 
-    return total
-
-
+    return total;
   }
-
-
-
-
 
   get totalDiscountInSupermarket() {
-
     let total: number = 0;
 
     for (let i: number = 0; i < this.transactions.length; i++) {
-
-      total += this.totalDiscount(this.transactions[i])
-
+      total += this.totalDiscount(this.transactions[i]);
     }
 
-    return total
-
+    return total;
   }
-
-
 }
-

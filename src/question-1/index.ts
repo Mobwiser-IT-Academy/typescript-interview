@@ -17,44 +17,19 @@ import { title } from "process";
  * console.log(analyseQuotes(quotes));
  * > {'Sports': 1, 'Politcs': 1, 'Motivational': 1}
  */
-export interface Quote  {
-
-     title:string;
-     category:string;
-
-  
-
-    };
-
-export function analyseQuotes(quotes:Quote[]): Record<string, number> 
-{
-
-    let objectResult={};
-    let quoteCategory= quotes;
-
-
-
-for(let i=0; i<quotes.length; i++){
-    objectResult[quotes[i].category] =0;
-    objectResult[quotes[i].category] =+ 1;
+export interface Quote {
+    title: string;
+    category: string;
 }
 
+export function analyseQuotes(quotes: Quote[]) {//: Record<string, number> {
+    let objectResult = {};
 
+    quotes.forEach(element => {
+        objectResult[element.category] = 0
+        objectResult[element.category] += 1
 
-return objectResult
-
+    })
+    return objectResult;
 
 }
-
-
-
-
-
-
-    
-
-
-
-
-
-
