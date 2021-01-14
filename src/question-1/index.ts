@@ -22,14 +22,16 @@ export interface Quote {
     category: string;
 }
 
-export function analyseQuotes(quotes: Quote[]) {//: Record<string, number> {
+export function analyseQuotes(quotes: Quote[]) {
+    //: Record<string, number> {
     let objectResult = {};
 
-    quotes.forEach(element => {
-        objectResult[element.category] = 0
-        objectResult[element.category] += 1
+    quotes.forEach((element) => {
+        if (!objectResult[element.category]) {
+            objectResult[element.category] = 0;
+        }
 
-    })
+        objectResult[element.category] += 1;
+    });
     return objectResult;
-
 }
