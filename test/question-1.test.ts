@@ -5,9 +5,10 @@ test("validate question 1", () => {
     { title: "random quote", category: "Sports" },
     { title: "random quote 2", category: "Politics" },
     { title: "random quote 3", category: "Motivational" },
+    { title: "random quote 4", category: "Sports" },
   ];
   const expectedResult = {
-    Sports: 1,
+    Sports: 2,
     Politics: 1,
     Motivational: 1,
   };
