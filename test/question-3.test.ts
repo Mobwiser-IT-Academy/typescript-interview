@@ -51,11 +51,11 @@ describe('validate question 3', () => {
     supermarket.registerTransaction(bag4);
   });
   it('RQ0 - Check number of transactions with discount', () => {
-    expect(supermarket.numberOfTransactionsWithDiscount).toBe(3);
+    expect(supermarket.numberOfTransactionsWithDiscount()).toBe(3);
   });
 
   it('RQ1 - Check total discount in the supermarket', () => {
-    expect(supermarket.totalDiscountInSupermarket).toBe(4.726);
+    expect(supermarket.totalDiscountInSupermarket()).toBe(4.726);
   });
 
   function addToBag(bag: Bag, product: Product, quantity: number) {

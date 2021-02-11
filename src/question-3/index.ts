@@ -34,7 +34,90 @@
  * - "registerTransaction" - this method should receive a bag and register a new transaction with that bag
  * - "hasDiscount" - this method should receive a transaction and check whether the transactions had a discount or not
  * - "totalDiscount" - this method should receive a transaction and check the total discount for that transaction
- * - "numberOfTransactionsWithDiscount" - this should be a getter that returns the number of transactions without discount
+ * - "numberOfTransactionsWithDiscount" - this should be a getter that returns the number of transactions with discount
  * - "totalDiscountInSupermarket" - this should be a getter that returns the total discount applied in the supermarket
  *
  */
+class Product {
+    name : string;
+    price : number;
+
+    constructor(name : string, price : number) {
+        this.name = name;
+        this.price = price;
+    }
+}
+
+class Bag {
+    products : Product[] = [];
+
+    totalSpent() : number {
+        let total : number = 0;
+        for(let i = 0; i<this.products.length; i++) {
+            total += this.products[i].price;
+        }
+        return total;
+    }
+
+    add(product : Product) : void {
+        this.products.push(product);
+    }
+}
+
+class Transaction {
+    bag : Bag;
+    time : Date;
+
+    constructor(bag : Bag) {
+        this.bag = bag;
+        this.time = new Date();
+    }
+}
+
+class Supermarket {
+    transactions : Transaction[] = [];
+    limitWithoutDiscount : number;
+    discountPercentage : number;
+
+    constructor(limitWithoutDiscount : number, discountPercentage : number) {
+        this.discountPercentage = discountPercentage;
+        this.limitWithoutDiscount = limitWithoutDiscount;
+    }
+
+    registerTransaction(bag : Bag) : void {
+        let transaction = new Transaction(bag);
+        this.transactions.push(transaction);
+    }
+
+    hasDiscount(transaction : Transaction) : boolean {
+        return transaction.bag.totalSpent() >= this.limitWithoutDiscount;
+    }
+
+    totalDiscount(transaction : Transaction) : number {
+        if(this.hasDiscount(transaction)) {
+            return transaction.bag.totalSpent() * this.discountPercentage;
+        }
+        return 0;
+    }
+
+    numberOfTransactionsWithDiscount() : number {
+        let total : number = 0;
+        for(let i = 0; i<this.transactions.length; i++) {
+            if(this.hasDiscount(this.transactions[i])) {
+                total += 1;
+            }
+        }
+        return total;
+    }
+
+    totalDiscountInSupermarket() : number {
+        let totalDiscount : number = 0;
+        for(let  i = 0; i<this.transactions.length; i++) {
+            totalDiscount += this.totalDiscount(this.transactions[i]);
+        }
+        return totalDiscount;
+    }
+}
+
+
+export { Product, Supermarket, Bag, Transaction };
