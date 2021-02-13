@@ -49,9 +49,9 @@ class Product {
 }
 
 class Bag {
-    products : Product[] = [];
+    private products : Product[] = [];
 
-    totalSpent() : number {
+    public get totalSpent() : number {
         let total : number = 0;
         for(let i = 0; i<this.products.length; i++) {
             total += this.products[i].price;
@@ -90,17 +90,17 @@ class Supermarket {
     }
 
     hasDiscount(transaction : Transaction) : boolean {
-        return transaction.bag.totalSpent() >= this.limitWithoutDiscount;
+        return transaction.bag.totalSpent >= this.limitWithoutDiscount;
     }
 
     totalDiscount(transaction : Transaction) : number {
         if(this.hasDiscount(transaction)) {
-            return transaction.bag.totalSpent() * this.discountPercentage;
+            return transaction.bag.totalSpent * this.discountPercentage;
         }
         return 0;
     }
 
-    numberOfTransactionsWithDiscount() : number {
+    public get numberOfTransactionsWithDiscount() : number {
         let total : number = 0;
         for(let i = 0; i<this.transactions.length; i++) {
             if(this.hasDiscount(this.transactions[i])) {
@@ -110,7 +110,7 @@ class Supermarket {
         return total;
     }
 
-    totalDiscountInSupermarket() : number {
+    public get totalDiscountInSupermarket() : number {
         let totalDiscount : number = 0;
         for(let  i = 0; i<this.transactions.length; i++) {
             totalDiscount += this.totalDiscount(this.transactions[i]);

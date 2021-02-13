@@ -23,7 +23,7 @@ interface Quote {
 function analyseQuotes(quote : Quote[]) : Object {
     let count : Object = {};
     for(let i = 0; i<quote.length; i++) {
-        if(count.hasOwnProperty(quote[i].category)) {
+        if(count[quote[i].category]) {
             count[quote[i].category] += 1;
         } else {
             count[quote[i].category] = 1;
