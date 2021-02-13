@@ -18,13 +18,13 @@
 
 import { type } from "os";
 
- enum TemperatureUnit {
+export enum TemperatureUnit {
     CELSIUS = 'Celsius',
     FAHRENHEIT = 'Fahrenheit',
     KELVIN = 'Kelvin'
  };
 
- function temperatureConversion(value : number, baseUnit : TemperatureUnit) : Record<string, number> {
+export function temperatureConversion(value : number, baseUnit : TemperatureUnit) : Record<string, number> {
     let conversion : Record<string, number> = {
         'Celsius' : 0,
         'Fahrenheit' : 0,
@@ -50,5 +50,3 @@ import { type } from "os";
     }
     return conversion;
  }
-
- export { TemperatureUnit, temperatureConversion };

@@ -38,7 +38,7 @@
  * - "totalDiscountInSupermarket" - this should be a getter that returns the total discount applied in the supermarket
  *
  */
-class Product {
+export class Product {
     name : string;
     price : number;
 
@@ -48,7 +48,7 @@ class Product {
     }
 }
 
-class Bag {
+export class Bag {
     private products : Product[] = [];
 
     public get totalSpent() : number {
@@ -64,7 +64,7 @@ class Bag {
     }
 }
 
-class Transaction {
+export class Transaction {
     bag : Bag;
     time : Date;
 
@@ -74,7 +74,7 @@ class Transaction {
     }
 }
 
-class Supermarket {
+export class Supermarket {
     transactions : Transaction[] = [];
     limitWithoutDiscount : number;
     discountPercentage : number;
@@ -101,13 +101,8 @@ class Supermarket {
     }
 
     public get numberOfTransactionsWithDiscount() : number {
-        let total : number = 0;
-        for(let i = 0; i<this.transactions.length; i++) {
-            if(this.hasDiscount(this.transactions[i])) {
-                total += 1;
-            }
-        }
-        return total;
+        let transactionsWithDiscount = this.transactions.filter(x => this.hasDiscount(x));
+        return transactionsWithDiscount.length;
     }
 
     public get totalDiscountInSupermarket() : number {
@@ -119,5 +114,3 @@ class Supermarket {
     }
 }
 
-
-export { Product, Supermarket, Bag, Transaction };

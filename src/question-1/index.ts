@@ -15,12 +15,12 @@
  * console.log(analyseQuotes(quotes));
  * > {'Sports': 1, 'Politcs': 1, 'Motivational': 1}
  */
-interface Quote {
+export interface Quote {
     readonly title : string,
     readonly category : string
 }
 
-function analyseQuotes(quote : Quote[]) : Object {
+export function analyseQuotes(quote : Quote[]) : Object {
     let count : Object = {};
     for(let i = 0; i<quote.length; i++) {
         if(count[quote[i].category]) {
@@ -31,5 +31,3 @@ function analyseQuotes(quote : Quote[]) : Object {
     }
     return count;
 }
-
-export { Quote, analyseQuotes}
